@@ -49,6 +49,8 @@ class infoGAN(object):
             # self.data_X, self.data_y = load_mnist(self.dataset_name)
             (data_X, data_y) , (_, _) = mnist.load_data()
             self.data_X = data_X.reshape(data_X.shape[0], self.input_height, self.input_width, self.c_dim)
+            self.data_X = self.data_X.astype('float32')
+            self.data_X /= 255
             self.data_y = keras.utils.to_categorical(data_y, self.len_discrete_code)
             # get number of batches for a single epoch
             self.num_batches = len(self.data_X) // self.batch_size
